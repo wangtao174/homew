@@ -1,0 +1,93 @@
+package main
+
+import "fmt"
+
+type Author struct {
+	Name     string //名字
+	VIP      bool   //是否是高贵的带会员
+	Icon     string //头像
+	ignature string //签名
+}
+type video struct {
+	videoname string
+	dianzhennum int
+	shouchangnum int
+	binum int
+	upname Author
+
+}
+//type newvideo interface {
+//	dianzhan()
+//	shouchang()
+//	toubi()
+//	yijiansanlian()
+//
+//}
+func (v *video) dianzhan() {
+	v.dianzhennum++
+}
+
+func (v *video ) shouchang()  {
+	v.shouchangnum++
+}
+
+func (v *video) toubi() {
+	v.binum++
+}
+func (v *video)yijiansanlian()  {
+	v.shouchang()
+	v.dianzhan()
+	v.toubi()
+}
+
+func  getvideo() *video {
+	var name  string
+	var	videoname string
+	fmt.Println("请输入up主的姓名，和视频的姓名")
+	fmt.Scanf("%s%s",&name,&videoname)
+	return &video{
+		videoname: videoname,
+		upname: Author{
+			Name: name,
+			VIP: true,
+			Icon:"cut",
+			ignature: "永远不要低估自己的能力\n永远不要高估自己的毅力\n",
+		},
+		dianzhennum: 0,
+		shouchangnum: 0,
+		binum: 0,
+
+	}
+}
+func look(video2 *video)  {
+	fmt.Printf("%#v\n",video2)
+}
+	func main () {
+		var c int
+		var v *video
+		v = getvideo()
+		fmt.Println(" 如果你想查看这个视频的信息请输入/1/\n如果" +
+			"你想为这个视频点赞请输入/ 2 /\n如果你想要收藏这个视频请输入/3/\n如果" +
+			"你想为这个视频投币请输入/4/\n如果你决定一键三连请输入/5/\n如果你想退出这个程序")
+		for {
+			fmt.Scanf("%d", &c)
+			if c==6{
+				break
+			}
+			switch c {
+			case 1:
+				look(v)
+			case 2:
+				v.dianzhan()
+			case 3:
+				v.shouchang()
+			case 4:
+				v.toubi()
+			case 5:
+				v.yijiansanlian()
+			default:
+				println("输入错误")
+
+			}
+		}
+	}
