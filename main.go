@@ -1,35 +1,58 @@
-package _main
-//
-//import "fmt"
-//
-//func receveiver (v interface{}) {
-//	switch v.(type) {
-//	case string:
-//		fmt.Println("这个是字符串！")
-//	case bool:
-//		fmt.Println("这个是bool值!")
-//	case int:
-//		fmt.Println("这个是int类型!")
-//	case float64:
-//		fmt.Println("这个是float类型!")
-//	case interface{}:
-//		fmt.Println("这个是空接口奥！")
-//	default:
-//		fmt.Println("不知道这个是什么类型的值!")
-//
-//
-//	}
-//}
-//
-//func main (){
-//	a:=32
-//	b:="helly Golang"
-//	c:=3.1415926
-//	d:=false
-//	var x interface{}
-//	receveiver(a)
-//	receveiver(b)
-//	receveiver(c)
-//	receveiver(d)
-//	receveiver(x)
-//}
+package main
+
+import "fmt"
+
+type person struct {
+	neme string
+	age int
+	gender string
+	issingle bool
+}
+
+type  dove interface {
+	gugugu()
+}
+
+type repeater interface {
+	repeat(string)
+}
+
+type lemon_jin interface{
+	suan()
+}
+type zhenxiangguai interface {
+	jiaojiaojiao()
+}
+
+func (p *person) gugugu(){
+	fmt.Println(p.neme,"又在放鸽子")
+}
+func (p *person) repeat(word string){
+	fmt.Println(p.neme,"跟着又说了一遍\n",word)
+}
+func (p *person) suan(){
+	fmt.Println("臭柠檬精",p.neme,"又酸了")
+}
+func(p *person) jiaojiaojiao() {
+	fmt.Println(p.neme,"给了自己一个巴掌，并说:“学习go语言真香！”")
+}
+
+func main (){
+	p :=&person{"小萌新",18,"male",true}
+	q :=&person{"王二麻子",18,"male",false}
+	var w dove
+	w=q
+	w.gugugu()
+	var x repeater
+	x=p
+	x.repeat("“CAS的dl们tql”")
+
+	var e lemon_jin
+	e=q
+	e.suan()
+	var r zhenxiangguai
+	r=p
+	r.jiaojiaojiao()
+
+
+}
