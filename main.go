@@ -1,35 +1,40 @@
-package _main
-//
-//import "fmt"
-//
-//func receveiver (v interface{}) {
-//	switch v.(type) {
-//	case string:
-//		fmt.Println("这个是字符串！")
-//	case bool:
-//		fmt.Println("这个是bool值!")
-//	case int:
-//		fmt.Println("这个是int类型!")
-//	case float64:
-//		fmt.Println("这个是float类型!")
-//	case interface{}:
-//		fmt.Println("这个是空接口奥！")
-//	default:
-//		fmt.Println("不知道这个是什么类型的值!")
-//
-//
-//	}
-//}
-//
-//func main (){
-//	a:=32
-//	b:="helly Golang"
-//	c:=3.1415926
-//	d:=false
-//	var x interface{}
-//	receveiver(a)
-//	receveiver(b)
-//	receveiver(c)
-//	receveiver(d)
-//	receveiver(x)
-//}
+package main
+
+import (
+	"fmt"
+	"sync"
+)
+
+var wg   sync.WaitGroup
+var count int
+
+func judge(n int ){
+	flag :=true
+	for i:=2;i<n/2;i++{
+		if n%i==0{
+			flag=false
+			break
+		}
+	}
+	if flag{
+		count++
+		fmt.Println(n)
+	}
+
+	wg.Done()
+}
+
+func main() {
+
+	for i:=2;i<50000;i++{
+		wg.Add(1)
+		 go judge(i)
+
+	}
+	fmt.Println(count)
+	wg.Wait()
+	fmt.Println(count)
+	//for range ans{
+	//	fmt.Println(ans)
+	//}
+}
